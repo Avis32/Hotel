@@ -22,7 +22,7 @@ class ReservationSerializer(serializers.HyperlinkedModelSerializer):
     def validate(self, attrs):
         if attrs['start_date'] > attrs['end_date']:
             raise serializers.ValidationError('start_date is after end_date')
-        for res in Reservation.objects.all():
+        for res in Reservation.objects.all().filter(res_room=attrs['res_room']):
             if res.res_room == attrs['res_room']:
                 if res.start_date <= attrs['end_date']:
                     if res.start_date >= attrs['start_date']:
