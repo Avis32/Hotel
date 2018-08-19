@@ -15,17 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from rest_framework import routers
-from reservation import views
+from reservation import views as reservationviews
 from room import views as roomviews
+from user import views as userviews
 from django.urls import path
 
 
 router = routers.DefaultRouter()
-router.register(r'reservation', views.ReservationViewSet)
+router.register(r'reservation', reservationviews.ReservationViewSet, base_name='reservation')
 router.register(r'room', roomviews.RoomViewSet)
+router.register(r'user', userviews.UserViewSet, base_name='user')
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    #todo Avalible Dates url
+    #url(r'^api-auth/')
     path('AvalibleDates', roomviews.AvailableDatesView.as_view()),
 ]

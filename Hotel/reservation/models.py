@@ -7,7 +7,7 @@ from room.models import Room
 
 class Reservation(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    owner = models.ForeignKey('auth.User',  related_name='reservations', on_delete=models.CASCADE)
+    owner = models.ForeignKey('auth.user',  related_name='reservations', on_delete=models.CASCADE)
     res_room = models.ForeignKey(Room, related_name='reservations', on_delete=models.CASCADE)
     start_date = models.DateField(auto_now=False, auto_now_add=False)
     end_date = models.DateField(auto_now=False, auto_now_add=False)

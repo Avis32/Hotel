@@ -8,15 +8,7 @@ class ReservationSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Reservation
-        # field = ('id',
-        #          'url',
-        #          'created',
-        #          'owner',
-        #          'res_room',
-        #          'start_date',
-        #          'end_date',
-        #
-        #          )
+        #todo exclude owner from fields
         fields = '__all__'
 
     def validate(self, attrs):
